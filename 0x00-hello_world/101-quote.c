@@ -12,5 +12,5 @@ int main(void)
 
 	write(2, buf, strnlen(buf, sizeof(buf)));
 
-	return (0);
+	return (1);
 }
