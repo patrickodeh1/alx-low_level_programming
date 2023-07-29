@@ -8,7 +8,7 @@
 
 char *string_toupper(char *str)
 {
-	int i, length = _strlen - 1;
+	int i, length = _strlen(str) - 1;
 
 	for (i = 0; i < length, str[i] != '\0'; i++)
 	{
