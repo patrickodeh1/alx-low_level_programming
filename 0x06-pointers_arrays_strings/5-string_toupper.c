@@ -8,7 +8,7 @@
 
 char *string_toupper(char *str)
 {
-	int i, length = _strlen(str) - 1;
+	int i;
 
 	for (i = 0; str[i] != '\0'; i++)
 	{
@@ -18,21 +18,4 @@ char *string_toupper(char *str)
 		}
 	}
 	return (str);
-}
-
-/**
- * _strlen - checks string length
- * @s: string
- * Return: length of string
- */
-
-int _strlen(char *s)
-{
-	int i = 0;
-
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
 }
