@@ -14,7 +14,7 @@ int main(void)
 
 		if (i > 1 && i < 100)
 		{
-			putchar(32);
+			printf(" ");
 		}
 
 		if ((i % 3 == 0) && (i % 5 == 0))
@@ -34,6 +34,6 @@ int main(void)
 			printf("%d", i);
 		}
 	}
-	putchar(10);
+	printf("\n");
 	return (0);
 }
