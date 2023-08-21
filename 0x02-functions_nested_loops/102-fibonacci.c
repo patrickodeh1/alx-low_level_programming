@@ -23,4 +23,5 @@ int main(void)
 			printf(", ");
 	}
 	putchar(10);
+	return (0);
 }
