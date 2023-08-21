@@ -14,13 +14,13 @@ int main(void)
 	f2 = 1;
 	printf("%lu, %lu, ", f1, f2);
 	fn = f1 + f2;
-	for (i = 3; i <= 50; i++)
+	for (i = 3; i <= 52; i++)
 	{
 		printf("%lu", fn);
 		f1 = f2;
 		f2 = fn;
 		fn = f1 + f2;
-		if (i < 50)
+		if (i < 52)
 			printf(", ");
 	}
 	putchar(10);
