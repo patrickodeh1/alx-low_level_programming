@@ -8,21 +8,21 @@
 int main(void)
 {
 	int f1, f2, fn;
-	int sum, i;
+	int sum = 2, i;
 
 	f1 = 1;
 	f2 = 2;
-	printf("%d, %d, ", f1, f2);
 	fn = f1 + f2;
 	for (i = 3; i <= 32; i++)
 	{
 		if (fn % 2 == 0)
 		{
-			printf("%d\n", sum += fn);
+			sum += fn;
 		}
 		f1 = f2;
 		f2 = fn;
 		fn = f1 + f2;
 	}
+	printf("%d\n", sum);
 	return (0);
 }
