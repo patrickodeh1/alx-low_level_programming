@@ -7,15 +7,16 @@
 
 int main(void)
 {
-	int f1, f2, fn, i;
+	unsigned long int f1, f2, fn;
+	int i;
 
 	f1 = 0;
 	f2 = 1;
-	printf("%d, %d, ", f1, f2);
+	printf("%lu, %lu, ", f1, f2);
 	fn = f1 + f2;
 	for (i = 3; i <= 50; i++)
 	{
-		printf("%d", fn);
+		printf("%lu", fn);
 		f1 = f2;
 		f2 = fn;
 		fn = f1 + f2;
