@@ -25,7 +25,7 @@ int main(void)
 	}
 	if (num > 2)
 	{
-		printf("%d", num);
+		printf("%lu\n", num);
 	}
 	return (0);
 }
