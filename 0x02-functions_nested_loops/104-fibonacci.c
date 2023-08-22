@@ -14,9 +14,9 @@ int main(void)
 	f2 = 2;
 	printf("%lu, %lu, ", f1, f2);
 	fn = f1 + f2;
-	for (i = 3; i <= 98; i++)
+	for (i = 3; i <= 96; i++)
 	{
-		if (i == 98)
+		if (i == 96)
 		{
 			printf("%lu\n", fn);
 		}
