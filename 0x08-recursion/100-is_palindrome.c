@@ -17,20 +17,20 @@ int strl(char *s)
 /**
  * comp - compares characters of string
  * @s: string to compare
- * @i1: iterator
- * @i2: iterator
+ * @i: iterator
+ * @len: length
  * Return: 0
  */
 
-int comp(char *s, int i1, int i2)
+int comp(char *s, int i, int len)
 {
-	if (*(s + i1) == *(s + i2))
+	if (*(s + i) == *(s + len - 1))
 	{
-		if (i1 == i2 || i1 == i2 + 1)
-			return (1);
-		return (0 + comp(s, i1 + 1, i2 - 1));
+		return (0);
 	}
-	return (0);
+	if (i >= len)
+		return (1);
+	return (0 + comp(s, i + 1, len - 1));
 }
 
 /**
@@ -43,5 +43,5 @@ int is_palindrome(char *s)
 {
 	if (*s == '\0')
 		return (1);
-	return (comp(s, 0, srl(s) - 1));
+	return (comp(s, 0, srl(s)));
 }
