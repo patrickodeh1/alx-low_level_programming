@@ -13,6 +13,8 @@ char *str_concat(char *s1, char *s2)
 	int i, j, k;
 	char *ptr;
 
+	if (!s1 || !s2)
+		return (NULL);
 	i = j = k = 0;
 	while (s1[i] != '\0')
 		i++;
