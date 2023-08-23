@@ -24,13 +24,11 @@ int strl(char *s)
 
 int comp(char *s, int i, int len)
 {
-	if (*(s + i) == *(s + len - 1))
-	{
-		return (0);
-	}
 	if (i >= len)
 		return (1);
-	return (0 + comp(s, i + 1, len - 1));
+	if (s[i] != s[len])
+		return (0);
+	return (comp(s, i + 1, len - 1));
 }
 
 /**
@@ -41,7 +39,11 @@ int comp(char *s, int i, int len)
 
 int is_palindrome(char *s)
 {
+	int i = 0;
+
+	i = strl(s) - 1;
+
 	if (*s == '\0')
 		return (1);
-	return (comp(s, 0, strl(s)));
+	return (comp(s, 0, i));
 }
