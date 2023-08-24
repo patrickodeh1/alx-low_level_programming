@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <stddef.h>
 
-int word_len(char *str);
 int word_count(char *str);
 
 /**
@@ -13,38 +12,39 @@ int word_count(char *str);
 
 char **strtow(char *str)
 {
-	int idx = 0, wrd, w, ltr, l;
-	char **p;
+	int i, k = 0, len = 0, wrd, c = 0, st, end;
+	char **p, *tmp;
 
-	if (str == NULL || str[0] == '\0')
-		return (NULL);
+	while (*(str + len))
+		len++;
 	wrd = word_count(str);
 	if (wrd == 0)
 		return (NULL);
-	p = malloc(sizeof(char *) * (wrd + 1));
+	p = (char **) malloc(sizeof(char *) * (wrd + 1));
 	if (p == NULL)
 		return (NULL);
-	for (w = 0; w < wrd; w++)
+	for (i = 0; i <= len; i++)
 	{
-		while (str[idx] == ' ')
+		if (str[i] == ' ' || str[i] == '\0')
 		{
-			idx++;
+			if (c)
+			{
+				end = i;
+				tmp = (char *) malloc(sizeof(char) * (c + 1));
+				if (tmp == NULL)
+					return (NULL);
+				while (st < end)
+					*tmp++ = str[st++];
+				*tmp = '\0';
+				p[k] = tmp - c;
+				k++;
+				c = 0;
+			}
 		}
-		ltr = word_len(str + idx);
-		p[w] = malloc(sizeof(char) * (ltr + 1));
-
-		if (p[w] == NULL)
-		{
-			for (; w >= 0; w--)
-				free(p[w]);
-			free(p);
-			return (NULL);
-		}
-		for (l = 0; l < ltr; l++)
-			p[w][l] = str[idx++];
-		p[w][l] = '\0';
+		else if (c++ == 0)
+			st = i;
 	}
-	p[w] = NULL;
+	p[k] = NULL;
 	return (p);
 }
 
@@ -56,35 +56,17 @@ char **strtow(char *str)
 
 int word_count(char *str)
 {
-	int idx = 0, len = 0, words = 0;
+	int idx, len = 0, words = 0;
 
-	for (idx = 0; *(str + idx); idx++)
-		len++;
-	for (idx = 0; idx < len; idx++)
+	for (idx = 0; str[idx] != '\0'; idx++)
 	{
-		if (*(str + idx) != ' ')
+		if (str[idx] == ' ')
+			len = 0;
+		else if (len == 0)
 		{
+			len = 1;
 			words++;
-			idx = word_len(str + idx);
 		}
 	}
 	return (words);
-}
-
-/**
- * word_len - locates the index of first word in a string
- * @str: string
- * Return: index
- */
-
-int word_len(char *str)
-{
-	int idx = 0, len = 0;
-
-	while (*(str + idx) && *(str + idx) != ' ')
-	{
-		len++;
-		idx++;
-	}
-	return (len);
 }
