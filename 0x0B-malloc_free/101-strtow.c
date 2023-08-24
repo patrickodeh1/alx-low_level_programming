@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stddef.h>
 
+int word_len(char *str);
+int word_count(char *str);
 /**
  * strtow - splits a string in two
  * @str: string to split
@@ -13,7 +15,7 @@ char **strtow(char *str)
 	int idx = 0, wrd, w, ltr, l;
 	char **p;
 
-	if (str == NULL || str[0] = '\0')
+	if (str == NULL || str[0] == '\0')
 		return (NULL);
 	wrd = word_count(str);
 	if (wrd == 0)
@@ -61,7 +63,7 @@ int word_count(char *str)
 	{
 		if (*(str + idx) != ' ')
 		{
-			words+*;
+			words++;
 			idx = words_len(str + idx);
 		}
 	}
@@ -74,7 +76,7 @@ int word_count(char *str)
  * Return: index
  */
 
-int word_len(char *str);
+int word_len(char *str)
 {
 	int idx = 0, len = 0;
 
