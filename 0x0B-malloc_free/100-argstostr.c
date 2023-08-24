@@ -11,10 +11,9 @@
 
 char *argstostr(int ac, char **av)
 {
-	int ch, i, j, k;
+	int i = 0, j = 0, k = 0;
 	char *s;
 
-	ch = i = j = k = 0;
 	if (ac == 0 || av == NULL)
 		return (NULL);
 	while (i < ac)
