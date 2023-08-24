@@ -4,8 +4,9 @@
 
 int word_len(char *str);
 int word_count(char *str);
+
 /**
- * strtow - splits a string in two
+ * strtow - splits a string in two parts
  * @str: string to split
  * Return: splited string
  */
@@ -23,7 +24,7 @@ char **strtow(char *str)
 	p = malloc(sizeof(char *) * (wrd + 1));
 	if (p == NULL)
 		return (NULL);
-	for (w =0; w < wrd; w++)
+	for (w = 0; w < wrd; w++)
 	{
 		while (str[idx] == ' ')
 		{
@@ -48,14 +49,14 @@ char **strtow(char *str)
 }
 
 /**
- * word_count : counts word
+ * word_count - count words in string
  * @str: string
  * Return: number of words
  */
 
 int word_count(char *str)
 {
-	int idx, len, words;
+	int idx = 0, len = 0, words = 0;
 
 	for (idx = 0; *(str + idx); idx++)
 		len++;
