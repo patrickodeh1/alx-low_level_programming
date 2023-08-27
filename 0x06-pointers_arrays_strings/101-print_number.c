@@ -9,9 +9,9 @@ void print_number(int n)
 {
 	unsigned int i = n;
 
-	if (i < 0)
+	if (n < 0)
 	{
-		i = -i;
+		i = -n;
 		_putchar('-');
 	}
 	if (i / 10)
