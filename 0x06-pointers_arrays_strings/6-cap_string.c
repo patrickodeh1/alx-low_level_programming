@@ -1,7 +1,7 @@
 #include "main.h"
 #include <ctype.h>
 /**
- * cap_string - capitalize all words in a string
+ * cap_string - capitalizes all words in a string
  * @str: string to capitalize
  * Return: capitalized string
  */
