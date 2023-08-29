@@ -11,10 +11,31 @@ char *_strstr(char *haystack, char *needle)
 {
 	for (; *haystack != '\0'; haystack++)
 	{
-		if (*haystack == *needle)
+		if (*haystack == *needle && samestr(haystack, needle) == 1 || !*needle)
 		{
 			return ((char *) haystack);
 		}
 	}
 	return (NULL);
+}
+
+/**
+ * samestr - checks if the string b is inside a.
+ * @a: source string
+ * @b: string to be searched
+ *
+ * Return: 1 if there is coincidence, otherwise 0.
+ */
+int samestr(char *a, char *b)
+{
+	while (*b && *b == *a)
+	{
+		b++;
+		a++;
+	}
+
+	if (*b == '\0')
+		return (1);
+	else
+		return (0);
 }
