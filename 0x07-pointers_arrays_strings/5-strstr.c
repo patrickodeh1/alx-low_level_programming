@@ -11,7 +11,7 @@ char *_strstr(char *haystack, char *needle)
 {
 	for (; *haystack != '\0'; haystack++)
 	{
-		if ((*haystack == *needle) && (samestr(haystack, needle) == 1 || !*needle))
+		if (!*needle || (samestr(haystack, needle) == 1 && *haystack == *needle))
 		{
 			return ((char *) haystack);
 		}
