@@ -9,35 +9,21 @@
 
 char *_strpbrk(char *s, char *accept)
 {
-	if ((s == NULL) || (accept == NULL))
-		return (NULL);
-	while (*s)
+	unsigned int i, j;
+
+	for (i = 0; *(s + i); i++)
 	{
-		if (_strchr(accept, *s))
+		for (j = 0; *(accept + j); j++)
 		{
-			return (s);
+			if (*(s + i) == *(accept + j))
+			{
+				break;
+			}
 		}
-		else
-			s++;
-	}
-	return (NULL);
-}
-
-/**
- * _strchr - searches for a character in a string
- * @s: string
- * @c: character
- * Return: pointer to s
- */
-
-char *_strchr(char *s, char c)
-{
-	for (; *s >= '\0'; s++)
-	{
-		if (*s == c)
+		if (*(accept + j) != '\0')
 		{
-			return ((char *)s);
+			return (s + i);
 		}
 	}
-	return (NULL);
+	return (0);
 }
