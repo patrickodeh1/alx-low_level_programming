@@ -27,5 +27,5 @@ int _palin(char *s, int st, int end)
 int is_palindrome(char *s)
 {
 	int length = strlen(s);
-	return is_palindrome_helper(s, 0, length - 1);
+	return _palin(s, 0, length - 1);
 }
