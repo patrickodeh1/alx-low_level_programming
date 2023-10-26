@@ -2,17 +2,30 @@
 #include <string.h>
 
 /**
- * is_palindrome - checks for palindrome
+ * _palin - checks a string for palindrome
  * @s: string to check
+ * @st: beginning of s
+ * @end: end of s
  * Return: 1 if palindrome 0 if not
  */
 
-int is_palindrome(char *s) 
+int _palin(char *s, int st, int end)
 {
-	if (strlen(s) <= 1)
+	if (st >= end)
 		return (1);
-	if (s[0] != s[strlen(s) - 1])
+	if (s[st] != s[end])
 		return (0);
-	s[strlen(s) - 1] = '\0';
-	return (is_palindrome(s + 1));
+	return (_palin(s, s[st + 1], s[end - 1]));
+}
+
+/**
+ * is_palindrome - calls _palin
+ * @s: string to check
+ * Return: 1 or 0
+ */
+
+int is_palindrome(char *s)
+{
+	int length = strlen(s);
+	return is_palindrome_helper(s, 0, length - 1);
 }
