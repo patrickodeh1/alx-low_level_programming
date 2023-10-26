@@ -15,7 +15,7 @@ int _divisible(int n, int i)
 		return (0);
 	if (n % i == 0)
 		return (1);
-	return _divisible(n, i + 1);
+	return (_divisible(n, i + 1));
 }
 
 /**
@@ -30,3 +30,4 @@ int is_prime_number(int n)
 		return (0);
 	return (!_divisible(n, 2));
 }
+
