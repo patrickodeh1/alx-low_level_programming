@@ -11,6 +11,7 @@
 int main(int argc, char *argv[])
 {
 	int cents;
+
 	if (argc != 2)
 	{
 		printf("Error\n");
@@ -22,7 +23,8 @@ int main(int argc, char *argv[])
 	else
 	{
 		int coin = 0;
-		while(cents > 0)
+
+		while (cents > 0)
 		{
 			if (cents >= 25)
 				cents -= 25;
