@@ -2,7 +2,7 @@
 
 /**
  * free_grid - function that returns a pointer to a two dimensional array
- * @width: array's width
+ * @grid: grid to free
  * @height: array's height
  * Return: NULL on failure
  */
