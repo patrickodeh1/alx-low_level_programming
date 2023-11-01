@@ -19,7 +19,7 @@ char *argstostr(int ac, char **av)
 	{
 		if (av[i] != NULL)
 		{
-			len += strlen(av[1]) + 1;
+			len += strlen(av[i]) + 1;
 		}
 	}
 

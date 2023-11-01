@@ -21,10 +21,10 @@ char **strtow(char *str)
 		num_of_words++;
 		tok = strtok(NULL, " ");
 	}
-	arr = (char **)malloc((num_of_words + 1) + sizeof(chat *));
+	arr = (char **)malloc((num_of_words + 1) + sizeof(char *));
 	if (arr == NULL)
 		return (NULL);
-	tok = strkok(str, " ");
+	tok = strtok(str, " ");
 	i = 0;
 	while (tok != NULL)
 	{
