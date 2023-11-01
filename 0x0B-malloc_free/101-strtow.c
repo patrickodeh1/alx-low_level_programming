@@ -18,8 +18,9 @@ char **strtow(char *str)
 	{
         	return (NULL);
 	}
+	int i;
 
-	for (int i = 0; str[i] != '\0'; i++)
+	for (i = 0; str[i] != '\0'; i++)
 	{
         	if (str[i] != ' ')
 		{
@@ -36,6 +37,7 @@ char **strtow(char *str)
 	}
 
 	char **wordArray = (char **)malloc((numWords + 1) * sizeof(char *));
+
 	if (wordArray == NULL)
 	{
 		return (NULL);
@@ -46,10 +48,13 @@ char **strtow(char *str)
 	while (token != NULL)
 	{
         	int wordLength = strlen(token);
+
 		wordArray[wordIndex] = (char *)malloc(wordLength + 1);
         	if (wordArray[wordIndex] == NULL)
 		{
-            		for (int i = 0; i < wordIndex; i++) 
+			int i;
+
+            		for (i = 0; i < wordIndex; i++) 
 			{
                 		free(wordArray[i]);
             		}
