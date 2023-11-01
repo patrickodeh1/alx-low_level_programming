@@ -8,12 +8,13 @@
 
 char **strtow(char *str)
 {
+	if (str == NULL || *str == '\0')
+		return (NULL);
+
 	int num_of_words, word_len, i, j;
 	char *tok;
 	char **arr;
 
-	if (str == NULL || *str == '\0')
-		return (NULL);
 	num_of_words = 0;
 	tok = strtok(str, " ");
 	while (tok != NULL)
