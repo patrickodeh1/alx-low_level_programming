@@ -11,7 +11,7 @@ char **strtow(char *str)
 	int numWords = 0;
 	int inWord = 0;
 	int wordIndex = 0;
-	int i, j, wordLength
+	int i, j, wordLength;
 
 	char *token;
 	char **wordArray;
