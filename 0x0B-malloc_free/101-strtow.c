@@ -14,7 +14,7 @@ char **strtow(char *str)
 
 	if (str == NULL || *str == '\0')
 		return NULL;
-	num_of_words == 0;
+	num_of_words = 0;
 	tok = strtok(str, " ");
 	while (tok != NULL)
 	{
