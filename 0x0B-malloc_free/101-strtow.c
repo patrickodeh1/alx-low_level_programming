@@ -8,40 +8,61 @@
 
 char **strtow(char *str)
 {
-	if (str == NULL || *str == '\0')
-		return (NULL);
+	int numWords = 0;
+	int inWord = 0;
+	int wordIndex = 0;
 
-	int num_of_words, word_len, i, j;
-	char *tok;
-	char **arr;
+	char *token;
 
-	num_of_words = 0;
-	tok = strtok(str, " ");
-	while (tok != NULL)
+    	if (str == NULL || *str == '\0')
 	{
-		num_of_words++;
-		tok = strtok(NULL, " ");
+        	return (NULL);
 	}
-	arr = (char **)malloc((num_of_words + 1) * sizeof(char *));
-	if (arr == NULL)
-		return (NULL);
-	tok = strtok(str, " ");
-	i = 0;
-	while (tok != NULL)
+
+	for (int i = 0; str[i] != '\0'; i++)
 	{
-		word_len = strlen(tok);
-		arr[i] = (char *)malloc(word_len + 1);
-		if (arr[i] == NULL)
+        	if (str[i] != ' ')
 		{
-			for (j = 0; j < i; j++)
-				free(arr[j]);
-			free(arr);
-			return (NULL);
+			if (!inWord)
+			{
+     				numWords++;
+				inWord = 1;
+			}
 		}
-		strcpy(arr[i], tok);
-		i++;
-		tok = strtok(NULL, " ");
+		else
+		{
+			inWord = 0;
+		}
 	}
-	arr[num_of_words] = NULL;
-	return (arr);
+
+	char **wordArray = (char **)malloc((numWords + 1) * sizeof(char *));
+	if (wordArray == NULL)
+	{
+		return (NULL);
+	}
+
+	token = strtok(str, " ");
+
+	while (token != NULL)
+	{
+        	int wordLength = strlen(token);
+		wordArray[wordIndex] = (char *)malloc(wordLength + 1);
+        	if (wordArray[wordIndex] == NULL)
+		{
+            		for (int i = 0; i < wordIndex; i++) 
+			{
+                		free(wordArray[i]);
+            		}
+            		free(wordArray);
+            		return (NULL);
+        	}
+
+        strcpy(wordArray[wordIndex], token);
+        wordIndex++;
+        token = strtok(NULL, " ");
+	}
+
+	wordArray[numWords] = NULL;
+
+	return (wordArray);
 }
