@@ -13,7 +13,7 @@ char **strtow(char *str)
 	char **arr;
 
 	if (str == NULL || *str == '\0')
-		return NULL;
+		return (NULL);
 	num_of_words = 0;
 	tok = strtok(str, " ");
 	while (tok != NULL)
@@ -21,7 +21,7 @@ char **strtow(char *str)
 		num_of_words++;
 		tok = strtok(NULL, " ");
 	}
-	arr = (char **)malloc((num_of_words + 1) + sizeof(char *));
+	arr = (char **)malloc((num_of_words + 1) * sizeof(char *));
 	if (arr == NULL)
 		return (NULL);
 	tok = strtok(str, " ");
