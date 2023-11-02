@@ -8,66 +8,63 @@
 
 char **strtow(char *str)
 {
-	int numWords = 0;
-	int inWord = 0;
-	int wordIndex = 0;
-	int i, j, wordLength;
+    if (str == NULL || *str == '\0') {
+        return (NULL);
+    }
 
-	char *token;
-	char **wordArray;
+    int word_count = 0;
+    int in_word = 0;
+    int word_length = 0;
 
-    	if (str == NULL || *str == '\0')
-	{
-        	return (NULL);
-	}
+    // Count the number of words and their lengths
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] != ' ' && !in_word) {
+            in_word = 1;
+            word_count++;
+        }
+        if (str[i] == ' ' && in_word) {
+            in_word = 0;
+        }
+        if (in_word) {
+            word_length++;
+        }
+    }
 
-	for (i = 0; str[i] != '\0'; i++)
-	{
-        	if (str[i] != ' ')
-		{
-			if (!inWord)
-			{
-     				numWords++;
-				inWord = 1;
-			}
-		}
-		else
-		{
-			inWord = 0;
-		}
-	}
+    char **words = (char **)malloc((word_count + 1) * sizeof(char *));
+    if (words == NULL) {
+        return (NULL);
+    }
 
-	wordArray = (char **)malloc((numWords + 1) * sizeof(char *));
+    int word_index = 0;
+    in_word = 0;
+    word_length = 0;
 
-	if (wordArray == NULL)
-	{
-		return (NULL);
-	}
+    // Allocate memory for each word and copy them
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] != ' ' && !in_word) {
+            in_word = 1;
+            word_length = 0;
+            words[word_index] = (char *)malloc((word_length + 1) * sizeof(char));
+            if (words[word_index] == NULL) {
+                for (int j = 0; j < word_index; j++) {
+                    free(words[j]);
+                }
+                free(words);
+                return (NULL);
+            }
+        }
+        if (str[i] == ' ' && in_word) {
+            in_word = 0;
+            word_length = 0;
+            word_index++;
+        }
+        if (in_word) {
+            words[word_index][word_length] = str[i];
+            word_length++;
+            words[word_index][word_length] = '\0';
+        }
+    }
 
-	token = strtok(str, " ");
-
-	while (token != NULL)
-	{
-        	wordLength = strlen(token);
-
-		wordArray[wordIndex] = (char *)malloc(wordLength + 1);
-        	if (wordArray[wordIndex] == NULL)
-		{
-
-            		for (j = 0; j < wordIndex; j++) 
-			{
-                		free(wordArray[j]);
-            		}
-            		free(wordArray);
-            		return (NULL);
-        	}
-
-        strcpy(wordArray[wordIndex], token);
-        wordIndex++;
-        token = strtok(NULL, " ");
-	}
-
-	wordArray[numWords] = NULL;
-
-	return (wordArray);
+    words[word_count] = NULL;
+    return (words);
 }
