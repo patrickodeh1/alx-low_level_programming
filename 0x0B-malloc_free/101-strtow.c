@@ -23,7 +23,7 @@ char **strtow(char *str)
 				i++;
 		}
 	}
-	array = (char **)malloc((count + 1) * sizeof(char *));
+	array = malloc((count + 1) * sizeof(char *));
 	if (array == NULL)
 		return (NULL);
 	token = strtok(str, " ");
