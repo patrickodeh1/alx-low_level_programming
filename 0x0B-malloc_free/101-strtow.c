@@ -8,18 +8,18 @@
 
 char **strtow(char *str)
 {
-	if (str == NULL || str[0] == '\0')
-		return (NULL);
-
 	int count = 0, i, index = 0, j;
 	char **array, *token;
+
+	if (str == NULL || str[0] == '\0')
+		return (NULL);
 
 	for (i = 0; str[i] != '\0'; i++)
 	{
 		if (str[i] != ' ')
 		{
 			count++;
-			while (str[i] != ' ' && stri != '\0')
+			while (str[i] != ' ' && str[i] != '\0')
 				i++;
 		}
 	}
