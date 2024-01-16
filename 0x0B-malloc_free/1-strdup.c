@@ -38,6 +38,11 @@ char *_strcpy(char *dest, char *src)
 	}
 	return (dest);
 }
+/**
+ * _strdup - duplicates a string
+ * @str: string to duplicate
+ * Return: duplicated string
+ */
 
 char *_strdup(char *str)
 {
