@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * puts_recursion - Displays a string
+ * _puts_recursion - Displays a string
  * @s: string to print
  */
 
