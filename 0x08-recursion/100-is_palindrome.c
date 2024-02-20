@@ -6,20 +6,20 @@
  * helper - helper function for is_palindrome
  * @st: start of string
  * @end: end of string
- * Returns: 1 if true
+ * Return: 1 if true
  */
 
 int helper(char *st, char *end)
 {
 	if (st >= end)
 		return (1);
-	
+
 	if (!isalnum(*st))
 		return (helper(st + 1, end));
 
 	if (!isalnum(*end))
 		return (helper(st, end - 1));
-	if(tolower(*st) != tolower(*end))
+	if (tolower(*st) != tolower(*end))
 		return (0);
 	return (helper(st + 1, end - 1));
 }
@@ -32,5 +32,5 @@ int helper(char *st, char *end)
 
 int is_palindrome(char *s)
 {
-	return (helper (s, s + strlen(s) - 1));
+	return (helper(s, s + strlen(s) - 1));
 }
