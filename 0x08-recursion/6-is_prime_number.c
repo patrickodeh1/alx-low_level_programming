@@ -1,11 +1,12 @@
 #include "main.h"
 
-/* helper - a helper function for is_prime_number
+/**
+ * helper - a helper function for is_prime_number
  * @n: number
  * @div: divisor
  * Return: 1 if prime
  */
- 
+
 int helper(int n, int div)
 {
 	if (n < 2)
@@ -25,5 +26,5 @@ int helper(int n, int div)
 
 int is_prime_number(int n)
 {
-	return ( helper(n, 2));
+	return (helper(n, 2));
 }
