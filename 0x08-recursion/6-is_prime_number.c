@@ -18,11 +18,11 @@ int helper(int n, int div)
 	return (helper(n, div + 1));
 }
 
- /**
-  * is_prime_number - checks for prime number
-  * @n: number to check
-  * Return: 1 if true
-  */
+/**
+ * is_prime_number - checks for prime number
+ * @n: number to check
+ * Return: 1 if true
+ */
 
 int is_prime_number(int n)
 {
