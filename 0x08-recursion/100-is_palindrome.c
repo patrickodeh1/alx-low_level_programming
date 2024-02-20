@@ -14,11 +14,11 @@ int helper(char *st, char *end)
 	if (st >= end)
 		return (1);
 	
-	while (!isalnum(*st))
-		st++;
+	if (!isalnum(*st))
+		return (helper(st + 1, end));
 
-	while (!isalnum(*end))
-		end--;
+	if (!isalnum(*end))
+		return (helper(st, end - 1));
 	if(tolower(*st) != tolower(*end))
 		return (0);
 	return (helper(st + 1, end - 1));
