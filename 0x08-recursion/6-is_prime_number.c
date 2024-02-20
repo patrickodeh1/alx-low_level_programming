@@ -19,9 +19,9 @@ int helper(int n, int div)
 }
 
  /**
- * is_prime_number - checks for prime number
- * @n: number to check
- * Return: 1 if true
+  * is_prime_number - checks for prime number
+  * @n: number to check
+  * Return: 1 if true
  */
 
 int is_prime_number(int n)
