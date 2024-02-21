@@ -1,7 +1,2 @@
 #!/bin/bash
-
-gcc -c *.c
-rm *.c
-
-ar rcs liball.a *.o
-rm *.o
+gcc -c *.c && ar rcs liball.a *.o && rm -f *.o
