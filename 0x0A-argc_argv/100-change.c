@@ -10,7 +10,10 @@
 
 int main (int argc, char *argv[])
 {
-	int cents, coins[], num_of_coins, min_coins, i;
+	int cents, i;
+	int coins[] = {25, 10, 5, 2, 1};
+	int num_of_coins = sizeof(coins) / sizeof(coins[0]);
+	int min_coins = 0;
 
 	if (argc != 2)
 	{
@@ -25,10 +28,6 @@ int main (int argc, char *argv[])
 		printf("0\n");
 		return(0);
 	}
-
-	coins = {25, 10, 5, 2, 1};
-	num_of_coins = sizeof(coins) / sizeof(coins[0]);
-	min_coins = 0;
 
 	for (i = 0; i < num_of_coins; i++)
 	{
