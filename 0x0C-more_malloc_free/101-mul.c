@@ -40,7 +40,7 @@ void print_error(void)
 int *multiply(char *num1, char *num2, int len1, int len2)
 {
 	int *result = calloc(len1 + len2, sizeof(int));
-	int i, n1, carry, j, n2;
+	int i, n1, carry, j, n2 prod;
 
 	if (result == NULL)
 		print_error();
