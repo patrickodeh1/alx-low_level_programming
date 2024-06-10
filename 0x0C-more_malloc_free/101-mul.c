@@ -90,7 +90,7 @@ void print_result(int *result, int len)
  */
 int main(int argc, char *argv[])
 {
-	char *num1, num2;
+	char *num1, *num2;
 	int len1, len2, *result;
 
 	if (argc != 3)
