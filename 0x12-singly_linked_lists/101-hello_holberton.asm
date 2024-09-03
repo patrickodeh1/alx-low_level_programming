@@ -1,19 +1,15 @@
 section .data
-    msg db 'Hello, Holberton', 10, 0   ; The message with a newline character
+    fmt db 'Hello, Holberton', 10, 0  ; The format string with a newline character and null terminator
 
 section .text
     global main
     extern printf
 
 main:
-    ; Prepare the stack frame for printf
-    mov rdi, fmt           ; First argument: format string
-    mov rsi, msg           ; Second argument: message
-    call printf            ; Call printf
+    ; Prepare arguments for printf
+    mov rdi, fmt      ; Format string (first argument)
+    call printf       ; Call printf
 
     ; Exit the program
-    mov eax, 0             ; Return code 0
-    ret                    ; Return from main
-       
-section .data
-    fmt db '%s', 0         ; Format string for printf
+    mov eax, 0        ; Return code 0
+    ret               ; Return from main
