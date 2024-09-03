@@ -7,38 +7,36 @@
  *
  * Return: The size of the list that was freed.
  */
+
 size_t free_listint_safe(listint_t **h)
 {
 	size_t count = 0;
-	listint_t *current = *h;
-	listint_t *next_node;
+	listint_t *current;
+	listint_t *temp;
+	listint_t *nodes[1024];
+	size_t i;
+
+	if (h == NULL || *h == NULL)
+		return (0);
+
+	current = *h;
 
 	while (current != NULL)
 	{
-		next_node = current->next;
-
-		listint_t *temp = *h;
-
-		while (temp != current && temp != NULL)
-			temp = temp->next;
-
-		if (temp == current)
+		for (i = 0; i < count; i++)
 		{
-			current->next = NULL;
-			break;
+			if (nodes[i] == current)
+			{
+				*h = NULL;
+				return (count);
+			}
 		}
 
-		free(current);
-		current = next_node;
+		nodes[count] = current;
 		count++;
-	}
-
-	while (current != NULL)
-	{
-		next_node = current->next;
-		free(current);
-		current = next_node;
-		count++;
+		temp = current;
+		current = current->next;
+		free(temp);
 	}
 
 	*h = NULL;
