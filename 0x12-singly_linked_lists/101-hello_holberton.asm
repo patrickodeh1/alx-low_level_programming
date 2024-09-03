@@ -6,10 +6,12 @@ section .text
     extern printf
 
 main:
-    ; Prepare arguments for printf
-    mov rdi, fmt      ; Format string (first argument)
-    call printf       ; Call printf
+    ; Set up the argument for printf
+    mov rdi, fmt       ; Address of the format string in rdi (first argument)
+
+    ; Call printf
+    call printf
 
     ; Exit the program
-    mov eax, 0        ; Return code 0
-    ret               ; Return from main
+    mov eax, 0         ; Return code 0
+    ret                ; Return from main
