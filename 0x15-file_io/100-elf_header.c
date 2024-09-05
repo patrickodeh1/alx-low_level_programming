@@ -10,6 +10,7 @@ void print_elf_header(int fd)
 {
 	Elf64_Ehdr ehdr;
 	ssize_t bytes_read;
+	int i;  /* Declare the loop variable outside the for loop */
 
 	bytes_read = read(fd, &ehdr, sizeof(ehdr));
 	if (bytes_read < 0)
@@ -25,7 +26,7 @@ void print_elf_header(int fd)
 
 	printf("ELF Header:\n");
 	printf("  Magic:   ");
-	for (int i = 0; i < EI_NIDENT; i++)
+	for (i = 0; i < EI_NIDENT; i++)
 		printf("%.2x ", ehdr.e_ident[i]);
 	printf("\n");
 
