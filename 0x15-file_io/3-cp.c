@@ -11,11 +11,13 @@
  * @file: The file name related to the error.
  * @exit_code: The exit code to use.
  */
-void error_exit(const char *message, const char *file, int exit_code)
+
+void error_exit(int code, const char *message)
 {
-	dprintf(STDERR_FILENO, "Error: %s %s\n", message, file);
-	exit(exit_code);
+    dprintf(STDERR_FILENO, "%s\n", message);
+    exit(code);
 }
+
 
 /**
  * main - Copies the contents of one file to another.
