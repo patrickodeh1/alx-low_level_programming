@@ -6,10 +6,6 @@
 #include <sys/types.h>
 #include <elf.h>
 
-/**
- * print_elf_header - Prints the ELF header of a file.
- * @fd: The file descriptor of the ELF file.
- */
 void print_elf_header(int fd)
 {
 	Elf64_Ehdr ehdr;
@@ -28,21 +24,76 @@ void print_elf_header(int fd)
 	}
 
 	printf("ELF Header:\n");
-	printf("  Magic:   %.2x %.2x %.2x %.2x %.2x %.2x %.2x %.2x\n",
-		   ehdr.e_ident[EI_MAG0], ehdr.e_ident[EI_MAG1],
-		   ehdr.e_ident[EI_MAG2], ehdr.e_ident[EI_MAG3],
-		   ehdr.e_ident[EI_CLASS], ehdr.e_ident[EI_DATA],
-		   ehdr.e_ident[EI_VERSION], ehdr.e_ident[EI_OSABI]);
+	printf("  Magic:   ");
+	for (int i = 0; i < EI_NIDENT; i++)
+		printf("%.2x ", ehdr.e_ident[i]);
+	printf("\n");
 
+	printf("  Class:                             ");
+	switch (ehdr.e_ident[EI_CLASS])
+	{
+	case ELFCLASS32:
+		printf("ELF32\n");
+		break;
+	case ELFCLASS64:
+		printf("ELF64\n");
+		break;
+	default:
+		printf("Invalid class\n");
+	}
+
+	printf("  Data:                              ");
+	switch (ehdr.e_ident[EI_DATA])
+	{
+	case ELFDATA2LSB:
+		printf("2's complement, little endian\n");
+		break;
+	case ELFDATA2MSB:
+		printf("2's complement, big endian\n");
+		break;
+	default:
+		printf("Invalid data encoding\n");
+	}
+
+	printf("  Version:                           %d (current)\n", ehdr.e_ident[EI_VERSION]);
+
+	printf("  OS/ABI:                            ");
+	switch (ehdr.e_ident[EI_OSABI])
+	{
+	case ELFOSABI_SYSV:
+		printf("UNIX - System V\n");
+		break;
+	case ELFOSABI_NETBSD:
+		printf("UNIX - NetBSD\n");
+		break;
+	case ELFOSABI_SOLARIS:
+		printf("UNIX - Solaris\n");
+		break;
+	default:
+		printf("Unknown OS/ABI\n");
+	}
+
+	printf("  ABI Version:                       %d\n", ehdr.e_ident[EI_ABIVERSION]);
+
+	printf("  Type:                              ");
+	switch (ehdr.e_type)
+	{
+	case ET_EXEC:
+		printf("EXEC (Executable file)\n");
+		break;
+	case ET_DYN:
+		printf("DYN (Shared object file)\n");
+		break;
+	case ET_REL:
+		printf("REL (Relocatable file)\n");
+		break;
+	default:
+		printf("Unknown type\n");
+	}
+
+	printf("  Entry point address:               0x%lx\n", ehdr.e_entry);
 }
 
-/**
- * main - Entry point of the program.
- * @argc: Number of arguments.
- * @argv: Argument vector.
- *
- * Return: 0 on success, or exit with an error code.
- */
 int main(int argc, char **argv)
 {
 	int fd;
