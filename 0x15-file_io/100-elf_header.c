@@ -1,12 +1,14 @@
-#include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <elf.h>
 
 /**
- * print_elf_header - Prints the ELF header information.
+ * print_elf_header - Prints the ELF header of a file.
  * @fd: The file descriptor of the ELF file.
- *
- * Description: Reads the ELF header from the file descriptor and prints
- *               relevant information. Exits with code 98 if there's an
- *               error reading the header.
  */
 void print_elf_header(int fd)
 {
@@ -19,44 +21,40 @@ void print_elf_header(int fd)
 		perror("Error reading ELF header");
 		exit(98);
 	}
-	if (bytes_read < sizeof(ehdr))
+	if (bytes_read < (ssize_t)sizeof(ehdr))
 	{
-		fprintf(stderr, "Error: Incomplete ELF header read\n");
+		fprintf(stderr, "Error: Incomplete ELF header\n");
 		exit(98);
 	}
 
 	printf("ELF Header:\n");
-	/* Adjust according to actual member */
-	printf("  Entry point address:               0x%lx\n",
-		   (unsigned long)ehdr.e_ident[0]);
+	printf("  Magic:   %.2x %.2x %.2x %.2x %.2x %.2x %.2x %.2x\n",
+		   ehdr.e_ident[EI_MAG0], ehdr.e_ident[EI_MAG1],
+		   ehdr.e_ident[EI_MAG2], ehdr.e_ident[EI_MAG3],
+		   ehdr.e_ident[EI_CLASS], ehdr.e_ident[EI_DATA],
+		   ehdr.e_ident[EI_VERSION], ehdr.e_ident[EI_OSABI]);
 
-	/* Other fields should be printed here */
+	// Additional ELF header fields can be printed here as needed.
 }
 
 /**
  * main - Entry point of the program.
- * @ac: The number of command-line arguments.
- * @av: The command-line arguments.
+ * @argc: Number of arguments.
+ * @argv: Argument vector.
  *
- * Return: Always 0 on success, or exit with an error code.
- *
- * Description: Opens the ELF file specified by the command-line argument,
- *               prints the ELF header, and closes the file. Exits with code
- *               97 if the wrong number of arguments is provided, 98 if there
- *               is an error opening the file, and 100 if there's an error
- *               closing the file.
+ * Return: 0 on success, or exit with an error code.
  */
-int main(int ac, char **av)
+int main(int argc, char **argv)
 {
 	int fd;
 
-	if (ac != 2)
+	if (argc != 2)
 	{
-		fprintf(stderr, "Usage: %s <elf_file>\n", av[0]);
+		fprintf(stderr, "Usage: %s <elf_file>\n", argv[0]);
 		exit(97);
 	}
 
-	fd = open(av[1], O_RDONLY);
+	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 	{
 		perror("Error opening file");
@@ -71,5 +69,5 @@ int main(int ac, char **av)
 		exit(100);
 	}
 
-	return (0);
+	return 0;
 }
