@@ -12,10 +12,14 @@
  * @exit_code: The exit code to use.
  */
 
-void error_exit(int code, const char *message)
+void error_exit(const char *message, const char *file, int exit_code)
 {
-    dprintf(STDERR_FILENO, "%s\n", message);
-    exit(code);
+    if (file != NULL && file[0] != '\0')
+        dprintf(STDERR_FILENO, "%s %s\n", message, file);
+    else
+        dprintf(STDERR_FILENO, "%s\n", message);
+    
+    exit(exit_code);
 }
 
 
