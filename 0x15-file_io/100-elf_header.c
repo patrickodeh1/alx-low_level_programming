@@ -34,7 +34,6 @@ void print_elf_header(int fd)
 		   ehdr.e_ident[EI_CLASS], ehdr.e_ident[EI_DATA],
 		   ehdr.e_ident[EI_VERSION], ehdr.e_ident[EI_OSABI]);
 
-	// Additional ELF header fields can be printed here as needed.
 }
 
 /**
